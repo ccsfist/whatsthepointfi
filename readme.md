@@ -196,7 +196,7 @@ Here are the updated instructions.
 
 These steps assume the **Source Code** is located at `ccsfist/whatsthepointfi` and you (logged in as **ccsfist**) want to create a brand new, independent repository (e.g., `biology-101`) based on that code.
 
-### Phase 1: Clone & Rename (Local Terminal)
+### Clone & Rename (Local Terminal)
 
 Download the "template" code and rename the folder to your new project name.
 
@@ -223,7 +223,7 @@ cd biology-101
 
 
 
-### Phase 2: Sever the Link (The "Fresh Start")
+### Sever the Link (The "Fresh Start")
 
 You must remove the old git history so this new project doesn't try to sync back to `whatsthepointfi`.
 
@@ -242,7 +242,7 @@ git branch -M main
 ```
 
 
-### Phase 3: Update Identity 
+### Update Identity 
 
 You need to change the **Name** so the browser tab doesn't say "Cogeneration-Satellite...".
 
@@ -254,28 +254,18 @@ site_name: Biology 101  <-- Change this to your new title
 ```
 * **Save the file.**
 
-
-### Phase 4: Create the Repo on GitHub
-
-1. Log in to GitHub as **ccsfist**.
-2. Click the **+** icon (top right) -> **New repository**.
-3. **Repository name:** Enter your new name (e.g., `biology-101`).
-4. **Visibility:** Public.
-5. **Initialize:** Leave **ALL** checkboxes unchecked (No README, No .gitignore).
-6. Click **Create repository**.
-
-### Phase 5: Upload & Publish
+### Upload & Publish
 
 Back in your terminal (inside the `biology-101` folder):
 
-1. **Commit the files:**
+**Commit the files:**
 ```bash
 git add .
 git commit -m "Initial commit: Fresh MkDocs site"
 
 ```
 
-1.5 **Create a new Repo:***
+**Create a new Repo:***
 You may need to login.  Someone else needs to check and tell me, Im already good so I cant test those commands.
 
 ```
@@ -283,7 +273,7 @@ gh repo create ccsfist/whatsthepointfi --public --source=. --remote=origin --pus
 ```
 
 
-2. **Connect to your new GitHub repo:**
+**Connect to your new GitHub repo:**
 ```bash
 git remote add origin https://github.com/ccsfist/biology-101.git
 
@@ -294,14 +284,13 @@ If you accidentaly forgot to change the name from biology-101.git to your new re
 git remote set-url origin https://github.com/ccsfist/newreponame.git
 ```
 
-3. **Push the code:**
+**Push the code:**
 ```bash
 git push -u origin main
 
 ```
 
-
-4. **Publish the Website:**
+**Publish the Website:**
 *(This builds the HTML and pushes it to the gh-pages branch)*
 ```bash
 mkdocs gh-deploy
