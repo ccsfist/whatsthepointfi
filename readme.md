@@ -275,10 +275,6 @@ gh repo create ccsfist/whatsthepointfi --public --source=. --remote=origin --pus
 
 
 **Connect to your new GitHub repo:**
-```bash
-git remote add origin https://github.com/ccsfist/biology-101.git
-
-```
 
 If you accidentaly forgot to change the name from biology-101.git to your new repo, you can fix it with this command
 ```
