@@ -246,13 +246,14 @@ git branch -M main
 
 You need to change the **Name** so the browser tab doesn't say "Cogeneration-Satellite...".
 
-* **Open `mkdocs.yml**`.
-*  **Change the `site_name**` at the very top:
+**Open `mkdocs.yml`.**
+
+**Change the `site_name`** at the very top:
 ```yaml
 site_name: Biology 101  <-- Change this to your new title
 
 ```
-* **Save the file.**
+**Save the file.**
 
 ### Upload & Publish
 
