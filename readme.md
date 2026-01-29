@@ -10,7 +10,14 @@ In theory, you should be able to set up a new github mkdocs repo and copy this s
 
 - You will also need a kobo account.
 
-- There are also fancy github actions repositories that house some figures that are generated based on people's responses for some use cases, but this documentation does not cover that.
+- There are also fancy github actions repositories that house some figures that are generated based on people`s responses for some use cases, but this documentation does not cover that.
+
+- Docs I use for mkdocs is at: https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
+
+- The most used mkdocs commands are (most must be done at the top folder level):
+  - push changes and publish the site externally: ``` mkdocs gh-deploy ``` 
+  - view the site in real time: ``` mkdocs serve ```
+
 
 ## Stuff inside
 
@@ -20,7 +27,7 @@ In theory, you should be able to set up a new github mkdocs repo and copy this s
 - the koboforms folder has the kobo forms that were used and uploaded into kobo for the workflow
 - the site folder is automatically generated so you dont need to worry about that
 - the mkdocs.yml file has
-    - the navigation flow on the left side of the screen.  You need to type in the -'filename.md' in order for each page for it to work.
+    - the navigation flow on the left side of the screen.  You need to type in the -`filename.md` in order for each page for it to work.
     - settings for things like formatting, and where the javascript is
 
 ## How to Use
@@ -28,13 +35,13 @@ In theory, you should be able to set up a new github mkdocs repo and copy this s
 - You make a name.md markdown file for each page of your workflow.
 - the first page should be called index.md
 - make sure to edit the mkdocs.yml file to include each page in the workflow.
-  - This will be under the nav: line and look something like - 'afilename.md'
+  - This will be under the nav: line and look something like - `afilename.md`
   - if you dont do it, most things will work, but the side navigation bar will be broken
 - At the bottom of each Markdown file, you send some information to javascript in a single line telling it what you want.  It can be broken into multiple lines if you like that.
   - An example from the index.md, which simply gets peoples emails for future slides is:
 ``` <div id="slide-config" data-type="start" data-next="../disastermandate/"> </div> ```
 - **Important: You need to tell it the name of your next slide in that line**
-  - That means you have to put the slide order both in mkdocs.yml and one at a time in the '<div' part of the md file.
+  - That means you have to put the slide order both in mkdocs.yml and one at a time in the `<div` part of the md file.
 
 ### Start Slide (Email Entry)
 
@@ -49,17 +56,18 @@ data-type="start"
 data-next: Path to the first real content slide.
 
 Example:
-'''# Beginning
+```
+# Beginning
 Lets start!
 
 <div id="slide-config" 
      data-type="start" 
      data-next="../slide1/">
 </div>
-'''
+```
 ### Kobo Form Slide
 
-Displays a KoboToolbox form. It automatically prefills the user's email (if captured previously) and handles the redirect upon submission.  
+Displays a KoboToolbox form. It automatically prefills the user`s email (if captured previously) and handles the redirect upon submission.  
 
 Some kobo notes (deeper documentation needed).
 - best way to generate a kobo form is to copy and the xlsx files in the koboforms folder
@@ -83,7 +91,7 @@ data-kobo-url: The URL of your Kobo form (e.g., https://ee.kobotoolbox.org/x/You
 
 Example:
 
-'''# Questions
+```# Questions
 
 Fill out this form
 
@@ -92,7 +100,7 @@ Fill out this form
      data-next="../slide3/" 
      data-kobo-id="b5CVmfVW">
 </div>
-'''
+```
 ### Figure Slide
 
 Displays an image and a "Next" button. It automatically adds a timestamp to the image URL to force a fresh reload (preventing stale cache issues).
@@ -108,7 +116,7 @@ data-next: Path to the next slide.
 data-img: Path to your image file (e.g., assets/chart.png, but it can even be a url).
 
 Example:
-'''# Results
+```# Results
 
 Here is what people put in the forms:
 
@@ -117,7 +125,7 @@ Here is what people put in the forms:
      data-next="../slide4/" 
      data-img="https://dosgoodcu.github.io/auto-assets/public_investment_chart.png">
 </div>
-'''
+```
 Simple Text Slide
 
 Displays standard Markdown text with a "Next" button at the bottom.
@@ -131,14 +139,14 @@ data-type="simple"
 data-next: Path to the next slide.
 
 Example:
-'''# Information
+```# Information
 Read this important text. Click the button below when you are done.
 
 <div id="slide-config" 
      data-type="simple" 
      data-next="../slide2/">
 </div>
-'''
+```
 
 ### Final Slide
 
@@ -147,27 +155,162 @@ Only put the markdown you want, no code.
 Example in this repo: bye.md
 
 Example:
-'''#Bye
+```#Bye
 
 Thanks!
-'''
+```
 
 ### Helpful Markdown
 Other helpful markdown that works in this environment:
 
+-Link:
+ - Simplest: just put link as text ``` http://https://dosgoodcu.github.io/whatsthepointgameinteractive ```
+ - Standard (note that this works for local figures):
+     ```[View the Niger demo dashboard](https://iridl.ldeo.columbia.edu/fbfmaproom2/niger_demo)```
+ - Mkdocs pop out to new tab:
+     ```
+     <a href="https://iridl.ldeo.columbia.edu/fbfmaproom2/niger_demo" target="_blank">
+          View the Niger demo dashboard
+     </a>
+     ```
+
 -Simplest figure:
-'''![](hat_gum.png)'''
+```![](hat_gum.png)```
 
 -Fancier figure (if you need to control size)
-'''<img src="hat.jpg" alt="Hat" style="width:500px;">'''
+```<img src="hat.jpg" alt="Hat" style="width:500px;">```
 
 -Embedded url window (eg a maptool that is active):
-'''<div style="text-align: center; margin-top: 10px;">
+```
+<div style="text-align: center; margin-top: 10px;">
     <iframe id="resizableFrame"
         src="https://fist.iri.columbia.edu/publications/docs/Madagascar_AA_FLexDashboard_OND_2024_FR/"
         width="1200" height="1300"
         style="border:1px solid black; transition: all 0.3s ease;"></iframe>
-</div>'''
+</div>
+```
+
+## How do make a similar mkdocs repo using this one
+
+Here are the updated instructions.
+
+These steps assume the **Source Code** is located at `ccsfist/whatsthepointfi` and you (logged in as **ccsfist**) want to create a brand new, independent repository (e.g., `biology-101`) based on that code.
+
+### Phase 1: Clone & Rename (Local Terminal)
+
+Download the "template" code and rename the folder to your new project name.
+
+1. **Clone the ccsfist template:**
+```bash
+git clone https://github.com/ccsfist/whatsthepointfi.git
+
+```
+
+
+2. **Rename the folder:**
+Replace `biology-101` with whatever you want your new project to be called.
+```bash
+mv whatsthepointfi biology-101
+
+```
+
+
+3. **Enter the new folder:**
+```bash
+cd biology-101
+
+```
 
 
 
+### Phase 2: Sever the Link (The "Fresh Start")
+
+You must remove the old git history so this new project doesn't try to sync back to `whatsthepointfi`.
+
+1. **Delete the old history:**
+```bash
+rm -rf .git
+
+```
+
+
+2. **Start a fresh repository:**
+```bash
+git init
+git branch -M main
+
+```
+
+
+### Phase 3: Update Identity 
+
+You need to change the **Name** so the browser tab doesn't say "Cogeneration-Satellite...".
+
+* **Open `mkdocs.yml**`.
+*  **Change the `site_name**` at the very top:
+```yaml
+site_name: Biology 101  <-- Change this to your new title
+
+```
+* **Save the file.**
+
+
+### Phase 4: Create the Repo on GitHub
+
+1. Log in to GitHub as **ccsfist**.
+2. Click the **+** icon (top right) -> **New repository**.
+3. **Repository name:** Enter your new name (e.g., `biology-101`).
+4. **Visibility:** Public.
+5. **Initialize:** Leave **ALL** checkboxes unchecked (No README, No .gitignore).
+6. Click **Create repository**.
+
+### Phase 5: Upload & Publish
+
+Back in your terminal (inside the `biology-101` folder):
+
+1. **Commit the files:**
+```bash
+git add .
+git commit -m "Initial commit: Fresh MkDocs site"
+
+```
+
+1.5 **Create a new Repo:***
+You may need to login.  Someone else needs to check and tell me, Im already good so I cant test those commands.
+
+```
+gh repo create ccsfist/whatsthepointfi --public --source=. --remote=origin --push
+```
+
+
+2. **Connect to your new GitHub repo:**
+```bash
+git remote add origin https://github.com/ccsfist/biology-101.git
+
+```
+
+If you accidentaly forgot to change the name from biology-101.git to your new repo, you can fix it with this command
+```
+git remote set-url origin https://github.com/ccsfist/newreponame.git
+```
+
+3. **Push the code:**
+```bash
+git push -u origin main
+
+```
+
+
+4. **Publish the Website:**
+*(This builds the HTML and pushes it to the gh-pages branch)*
+```bash
+mkdocs gh-deploy
+
+```
+
+
+
+**Done!**
+
+* **Code:** `https://github.com/ccsfist/biology-101`
+* **Website:** `https://ccsfist.github.io/biology-101` (Give it 2 minutes to appear).
